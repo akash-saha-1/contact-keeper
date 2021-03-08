@@ -4,7 +4,9 @@
   "description": "Contact Manager Web Application",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js",
+    "server": "nodemon server.js"
   },
   "repository": {
     "type": "git",
@@ -18,7 +20,7 @@
     "express": "^4.17.1",
     "express-validator": "^6.10.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.11.19"
+    "mongoose": "^5.11.15"
   },
   "devDependencies": {
     "concurrently": "^6.0.0",
