@@ -104,3 +104,9 @@ dist
 
 # TernJS port file
 .tern-port
+
+#react
+/client/build
+.DS_Store
+/client/.env.local
+/client/.env.production.local
