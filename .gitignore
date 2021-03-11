@@ -107,7 +107,7 @@ dist
 .tern-port
 
 #react
-/client/build
+#/client/build
 .DS_Store
 /client/.env.local
 /client/.env.production.local
