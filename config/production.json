@@ -1,5 +1,5 @@
 {
-    "mongoURI": "mongodb+srv://mongo:12345@contactkeeper.adw7s.mongodb.net/contact-keeper-prod?retryWrites=true&w=majority",
+    "mongoURI": "mongodb+srv://akash:12345@contactkeeper.adw7s.mongodb.net/contact-keeper?retryWrites=true&w=majority",
     "jwtSecret": "secret",
     "tokenExpiration": 7200
 }
