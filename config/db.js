@@ -3,7 +3,7 @@ config = require("config");
 const db = config.get("mongoURI");
 
 const connectDB = async () => {
-  console.log(db);
+  console.log(process.env.MONGODB_URI || db);
   try {
     await mongoose.connect(process.env.MONGODB_URI || db, {
       useNewUrlParser: true,
