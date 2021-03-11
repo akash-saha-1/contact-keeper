@@ -12,6 +12,7 @@ import Login from "./components/auth/login";
 import Alerts from "./components/layout/alerts";
 import setAuthToken from "./utils/authToken";
 import PrivateRoute from "./components/routing/privateRouting";
+import ResetPassword from "./components/auth/resetPassword";
 
 if (localStorage.token) {
   setAuthToken(localStorage.token);
@@ -31,6 +32,11 @@ const App = () => {
                   <Route path="/about" exact component={About} />
                   <Route path="/register" exact component={Register} />
                   <Route path="/login" exact component={Login} />
+                  <Route
+                    path="/reset-password"
+                    exact
+                    component={ResetPassword}
+                  />
                   <PrivateRoute path="/" exact component={Home} />
                 </Switch>
               </div>

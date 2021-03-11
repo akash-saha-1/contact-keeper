@@ -12,6 +12,8 @@ import {
   LOGIN_FAIL,
   LOGOUT,
   SET_LOADING,
+  RESET_PASSWORD,
+  RESET_FAIL,
 } from "../types";
 import setAuthToken from "../../utils/authToken";
 
@@ -69,6 +71,26 @@ export const AuthState = (props) => {
       dispatch({ type: LOGIN_FAIL, payload: err.response.data.msg });
     }
   };
+  //reset password
+  const resetPassword = async (formData) => {
+    dispatch({ type: SET_LOADING });
+    const config = {
+      headers: {
+        "Content-type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.post(
+        "/api/users/reset-password",
+        formData,
+        config
+      );
+      dispatch({ type: RESET_PASSWORD, payload: res.data });
+      loadUser();
+    } catch (err) {
+      dispatch({ type: RESET_FAIL, payload: err.response.data.msg });
+    }
+  };
   //logout user
   const logout = () => {
     dispatch({ type: LOGOUT });
@@ -90,6 +112,7 @@ export const AuthState = (props) => {
         loadUser,
         logout,
         clearErrors,
+        resetPassword,
       }}
     >
       {props.children}

@@ -2,18 +2,24 @@ import React, { useState, useContext, useEffect } from "react";
 import AuthContext from "./../../context/auth/authContext";
 import AlertContext from "./../../context/alert/alertContext";
 import Spinner from "./../layout/spinner";
-import { Link } from "react-router-dom";
 
-const Login = (props) => {
+const ResetPassword = (props) => {
   const [user, setUser] = useState({
     email: "",
     password: "",
+    password2: "",
   });
   const alertContext = useContext(AlertContext);
   const authContext = useContext(AuthContext);
   const { setAlert } = alertContext;
-  const { login, error, clearErrors, isAuthenticated, loading } = authContext;
-  const { email, password } = user;
+  const {
+    resetPassword,
+    error,
+    clearErrors,
+    isAuthenticated,
+    loading,
+  } = authContext;
+  const { email, password, password2 } = user;
   const onChange = (e) => {
     setUser({ ...user, [e.target.name]: e.target.value });
   };
@@ -21,25 +27,30 @@ const Login = (props) => {
     if (isAuthenticated) {
       props.history.push("/");
     }
-    if (error === "Inavlid credentials") {
-      setAlert(error, "danger");
+    if (error === "Inavlid EmailId") {
+      setAlert(error, "danger", 5000);
       clearErrors();
     }
     //eslint-disable-next-line
   }, [error, isAuthenticated]);
   const onSubmit = (e) => {
     e.preventDefault();
-    if (email === "" || password === "") {
+    if (email === "" || password === "" || password2 === "") {
       setAlert("Please fill in all fields", "danger");
+    } else if (password !== password2) {
+      setAlert("Passwords do not match", "danger");
     } else {
-      login(user);
+      resetPassword({
+        email,
+        password,
+      });
     }
     console.log(user);
   };
   return (
     <div className="form-container">
       <h1>
-        Account <span className="text-primary">Login</span>
+        Reset <span className="text-primary">Password</span>
       </h1>
       {loading === "load" ? (
         <Spinner />
@@ -63,20 +74,29 @@ const Login = (props) => {
               value={password}
               onChange={onChange}
               required
+              minLength="5"
+            />
+          </div>
+          <div className="form-group">
+            <label htmlFor="password2">Confirm Password</label>
+            <input
+              type="password"
+              name="password2"
+              value={password2}
+              onChange={onChange}
+              required
+              minLength="5"
             />
           </div>
           <input
             type="submit"
-            value="Login"
+            value="Reset Password"
             className="btn btn-primary btn-block"
           />
-          <button className="btn btn-secondary btn-block">
-            <Link to="/reset-password">Reset Password</Link>
-          </button>
         </form>
       )}
     </div>
   );
 };
 
-export default Login;
+export default ResetPassword;
