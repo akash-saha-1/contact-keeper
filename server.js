@@ -29,7 +29,7 @@ if (process.env.NODE_ENV === "production") {
 }
 
 const PORT = process.env.port || 500;
-
-app.listen(PORT, () => {
+const hostName = "0.0.0.0";
+app.listen(PORT, hostName, () => {
   console.log(`Server started on port ${PORT}`);
 });
