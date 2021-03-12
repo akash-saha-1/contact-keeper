@@ -45,7 +45,7 @@ const ResetPassword = (props) => {
         password,
       });
     }
-    console.log(user);
+    //console.log(user);
   };
   return (
     <div className="form-container">

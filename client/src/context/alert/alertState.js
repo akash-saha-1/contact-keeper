@@ -8,7 +8,7 @@ export const AlertState = (props) => {
   const intialState = [];
   const [state, dispatch] = useReducer(AlertReducer, intialState);
   //set Alert
-  const setAlert = (msg, type, timeout = 4000) => {
+  const setAlert = (msg, type, timeout = 5000) => {
     const id = uuid();
     dispatch({ type: SET_ALERT, payload: { msg, type, id } });
     setTimeout(() => {
